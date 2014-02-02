@@ -141,7 +141,7 @@ module CapistranoUnicorn
         fi;
 
         echo "Starting Unicorn...";
-        cd #{fetch :app_path} && #{try_unicorn_user} RAILS_ENV=#{fetch :rails_env} BUNDLE_GEMFILE=#{fetch :bundle_gemfile} #{fetch :unicorn_bundle} exec #{fetch :unicorn_bin} -c $UNICORN_CONFIG_PATH -E #{fetch :unicorn_rack_env} -D #{fetch :unicorn_options};
+        cd #{fetch :app_path} && #{try_unicorn_user} RAILS_ENV=#{fetch :rails_env, :production} BUNDLE_GEMFILE=#{fetch :bundle_gemfile} #{fetch :unicorn_bundle} exec #{fetch :unicorn_bin} -c $UNICORN_CONFIG_PATH -E #{fetch :unicorn_rack_env, :production} -D #{fetch :unicorn_options};
       %.split.join(' ')
     end
 
